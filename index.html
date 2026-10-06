@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SELECT * FROM production: intensive Databricks SQL practice</title>
+  <meta name="description" content="61 graded SQL challenges built on production scenarios, with a Databricks-compatible SQL engine that runs in your browser. Joins, window functions, data quality, time series, JSON, MERGE pipelines, recursive CTEs and real incidents.">
+  <meta name="theme-color" content="#fbfaf7">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./" aria-label="SELECT * FROM production, home"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="t">production</span></a>
+    <div class="progress" aria-live="polite"><span id="progress-text"></span><span class="bar"><i id="progress-bar"></i></span></div>
+    <button id="sandbox-btn" class="btn-quiet" type="button">Sandbox</button>
+    <a class="btn-quiet" href="https://github.com/aboualyXcode/select-from-production/tree/main/docs" target="_blank" rel="noopener">Guide ↗</a>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Challenges">
+      <div id="tracks"></div>
+    </nav>
+
+    <main class="main">
+      <section id="challenge" class="card challenge" aria-labelledby="ch-title">
+        <div class="ch-meta"><span id="ch-track" class="ch-track"></span><span id="ch-level" class="ch-level"></span><span id="ch-mode" class="ch-mode"></span></div>
+        <h1 id="ch-title" class="ch-title"></h1>
+        <p id="ch-scenario" class="ch-scenario"></p>
+        <div id="ch-task" class="ch-task"></div>
+        <div class="ch-tables"><span class="label">Tables</span><span id="ch-tables"></span></div>
+        <div id="ch-help" class="ch-help"></div>
+      </section>
+
+      <section class="card editor-card" aria-label="SQL editor">
+        <div class="editor-head">
+          <span class="label">SQL · Databricks dialect</span>
+          <span class="kbd-hint"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> runs</span>
+          <button id="reset-btn" class="btn-quiet" type="button">Reset</button>
+          <button id="run-btn" class="btn-secondary" type="button">Run</button>
+          <button id="submit-btn" class="btn-primary" type="button">Submit</button>
+        </div>
+        <div class="editor">
+          <pre id="gutter" class="gutter" aria-hidden="true"></pre>
+          <div class="code-wrap">
+            <pre id="highlight" class="highlight" aria-hidden="true"></pre>
+            <textarea id="sql" class="sql" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="SQL query" wrap="off"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section id="feedback" class="feedback" aria-live="polite" hidden></section>
+
+      <section class="card results-card" aria-label="Results">
+        <div class="results-head"><span class="label">Results</span><span id="results-meta" class="results-meta"></span></div>
+        <div id="results" class="results"><p class="empty">Run a query to see results.</p></div>
+      </section>
+    </main>
+
+    <aside class="schema" aria-label="Schema browser">
+      <div class="schema-head"><span class="label">Schema</span><span class="muted">stagedoor · click a name to insert it</span></div>
+      <div id="schema"></div>
+    </aside>
+  </div>
+
+  <dialog id="dlg" class="dlg"><div id="dlg-body"></div></dialog>
+
+  <script src="js/sql/parser.js"></script>
+  <script src="js/sql/functions.js"></script>
+  <script src="js/sql/engine.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/grader.js"></script>
+  <script src="js/challenges-1.js"></script>
+  <script src="js/challenges-2.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
