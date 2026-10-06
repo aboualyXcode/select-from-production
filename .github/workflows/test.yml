@@ -1,0 +1,29 @@
+# Verifies the SQL engine, every challenge and the generated Databricks files on each push.
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Databricks-specific engine behaviour
+        run: node tests/engine.test.js
+      - name: Differential test against SQLite
+        run: python3 tests/differential_sqlite.py
+      - name: Every challenge is sound
+        run: node tests/challenges.test.js
+      - name: Generated Databricks files are up to date and runnable
+        run: |
+          node tools/export-databricks.js
+          git diff --exit-code -- databricks
+          node tests/databricks-export.test.js
